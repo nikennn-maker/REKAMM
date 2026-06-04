@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resonansi Memory - Perekam Suara Retro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Special+Elite&family=VT323&family=Cutive+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-logo">📼 <span>Memory</span>Recorder</div>
+      <div class="nav-badge">Analog Studio</div>
+    </nav>
+
+    <main class="main">
+      <!-- ===== VIEW: WELCOME ===== -->
+      <div id="view-welcome" class="view active">
+        <div class="welcome-container">
+          <div class="welcome-eyebrow">✦ Selamat Datang ✦</div>
+          <h1 class="welcome-title">Resonansi<br /><em>Memori</em></h1>
+          <div class="welcome-divider">
+            <span class="welcome-divider-icon">📼</span>
+          </div>
+          <div class="vu-deco">
+            <div class="vu-bar"></div>
+            <div class="vu-bar"></div>
+            <div class="vu-bar"></div>
+            <div class="vu-bar"></div>
+            <div class="vu-bar"></div>
+            <div class="vu-bar"></div>
+            <div class="vu-bar"></div>
+            <div class="vu-bar"></div>
+            <div class="vu-bar"></div>
+          </div>
+          <p class="welcome-desc">
+            Abadikan suaramu dalam balutan kaset pita analog yang estetik. Pilih
+            tapeму, rekam ceritamu, bagikan ke dunia.
+          </p>
+          <button class="btn-primary" id="btnStart">Mulai Rekam ▶</button>
+        </div>
+      </div>
+
+      <!-- ===== VIEW: SELECT TAPE ===== -->
+      <div id="view-select-tape" class="view">
+        <button class="back-nav" id="btnBackToWelcome">← Kembali</button>
+        <div class="section-header">
+          <div class="section-eyebrow">Langkah 01 / 02</div>
+          <h2 class="section-title">Pilih Kasetmu</h2>
+          <p class="section-subtitle">
+            Setiap warna membawa vibes yang berbeda.
+          </p>
+        </div>
+
+        <!-- 
+        PETUNJUK GAMBAR:
+        Ganti src="assets/tape1.png" dst dengan path gambar milikmu.
+        Taruh semua gambar di folder "assets/" di sebelah index.html.
+        Format yang disarankan: PNG dengan background transparan, rasio 4:3 atau kotak.
+      -->
+        <div class="tape-grid">
+          <div class="tape-card" data-tape="tape1" data-name="Classic Maroon">
+            <div class="tape-img-wrap">
+              <img
+                src="assets/tape1.png"
+                alt="Classic Maroon"
+                onerror="
+                  this.style.display = 'none';
+                  this.nextElementSibling.style.display = 'block';
+                "
+              />
+              <span class="tape-fallback-icon">📼</span>
+            </div>
+            <div class="tape-name">Classic Maroon</div>
+            <div class="tape-sub">VINTAGE · '84</div>
+          </div>
+          <div class="tape-card" data-tape="tape2" data-name="Charcoal Black">
+            <div class="tape-img-wrap">
+              <img
+                src="assets/tape2.png"
+                alt="Charcoal Black"
+                onerror="
+                  this.style.display = 'none';
+                  this.nextElementSibling.style.display = 'block';
+                "
+              />
+              <span class="tape-fallback-icon">🖤</span>
+            </div>
+            <div class="tape-name">Charcoal Black</div>
+            <div class="tape-sub">NOIR · '87</div>
+          </div>
+          <div class="tape-card" data-tape="tape3" data-name="Vintage Ash">
+            <div class="tape-img-wrap">
+              <img
+                src="assets/tape3.png"
+                alt="Vintage Ash"
+                onerror="
+                  this.style.display = 'none';
+                  this.nextElementSibling.style.display = 'block';
+                "
+              />
+              <span class="tape-fallback-icon">🩶</span>
+            </div>
+            <div class="tape-name">Vintage Ash</div>
+            <div class="tape-sub">RETRO · '82</div>
+          </div>
+          <div class="tape-card" data-tape="tape4" data-name="Ivory White">
+            <div class="tape-img-wrap">
+              <img
+                src="assets/tape4.png"
+                alt="Ivory White"
+                onerror="
+                  this.style.display = 'none';
+                  this.nextElementSibling.style.display = 'block';
+                "
+              />
+              <span class="tape-fallback-icon">🤍</span>
+            </div>
+            <div class="tape-name">Ivory White</div>
+            <div class="tape-sub">PURE · '85</div>
+          </div>
+          <div class="tape-card" data-tape="tape5" data-name="Warm Chocolate">
+            <div class="tape-img-wrap">
+              <img
+                src="assets/tape5.png"
+                alt="Warm Chocolate"
+                onerror="
+                  this.style.display = 'none';
+                  this.nextElementSibling.style.display = 'block';
+                "
+              />
+              <span class="tape-fallback-icon">🤎</span>
+            </div>
+            <div class="tape-name">Warm Choco</div>
+            <div class="tape-sub">WALNUT · '86</div>
+          </div>
+          <div class="tape-card" data-tape="tape6" data-name="Noir Shadow">
+            <div class="tape-img-wrap">
+              <img
+                src="assets/tape6.png"
+                alt="Noir Shadow"
+                onerror="
+                  this.style.display = 'none';
+                  this.nextElementSibling.style.display = 'block';
+                "
+              />
+              <span class="tape-fallback-icon">💜</span>
+            </div>
+            <div class="tape-name">Noir Shadow</div>
+            <div class="tape-sub">DARK · '89</div>
+          </div>
+        </div>
+
+        <div class="confirm-bar hidden" id="confirmBar">
+          <button class="btn-primary" id="btnGoStudio">Buka Studio →</button>
+        </div>
+      </div>
+
+      <!-- ===== VIEW: STUDIO ===== -->
+      <div id="view-studio" class="view">
+        <button class="back-nav" id="btnBackToTape">← Pilih Tape Lain</button>
+        <div class="studio-wrapper">
+          <div class="recorder-body">
+            <div class="recorder-top-bar">
+              <div class="recorder-brand">MemoriPita® Pro</div>
+              <div class="recorder-model" id="studioTapeName">—</div>
+            </div>
+
+            <div class="recorder-main">
+              <!-- Kiri: Tape + VU -->
+              <div class="tape-window-area">
+                <div class="tape-window">
+                  <!-- Gambar tape yang dipilih akan muncul di sini -->
+                  <img
+                    id="selectedTapeImg"
+                    src=""
+                    alt="Selected Tape"
+                    class="tape-selected-img"
+                  />
+                  <div class="reels-overlay">
+                    <div class="reel" id="reel1"></div>
+                    <div class="reel" id="reel2"></div>
+                  </div>
+                </div>
+                <div class="tape-name-display" id="tapeNameDisplay">
+                  — SELECT —
+                </div>
+                <div class="vu-meter">
+                  <div class="vu-segment">
+                    <div class="vu-fill" id="vu0"></div>
+                  </div>
+                  <div class="vu-segment">
+                    <div class="vu-fill" id="vu1"></div>
+                  </div>
+                  <div class="vu-segment">
+                    <div class="vu-fill" id="vu2"></div>
+                  </div>
+                  <div class="vu-segment">
+                    <div class="vu-fill" id="vu3"></div>
+                  </div>
+                  <div class="vu-segment">
+                    <div class="vu-fill" id="vu4"></div>
+                  </div>
+                  <div class="vu-segment">
+                    <div class="vu-fill" id="vu5"></div>
+                  </div>
+                  <div class="vu-segment">
+                    <div class="vu-fill" id="vu6"></div>
+                  </div>
+                  <div class="vu-segment">
+                    <div class="vu-fill" id="vu7"></div>
+                  </div>
+                  <div class="vu-segment">
+                    <div class="vu-fill" id="vu8"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Kanan: Controls -->
+              <div class="controls-panel">
+                <div class="controls-section-title">System Status</div>
+                <div class="status-display">
+                  <div class="status-row">
+                    <span class="status-label">Mode</span>
+                    <span class="status-value" id="modeValue">STANDBY</span>
+                  </div>
+                  <div class="status-row">
+                    <span class="status-label">Signal</span>
+                    <span class="status-value" id="signalValue">—</span>
+                  </div>
+                  <div class="timer-display" id="timerDisplay">00:00</div>
+                  <div class="status-msg" id="statusMsg">
+                    Siap merekam kenanganmu...
+                  </div>
+                </div>
+
+                <div class="controls-section-title">Transport</div>
+                <div class="transport-buttons">
+                  <button class="btn-transport record-btn" id="btnRecord">
+                    <span class="btn-icon">⏺</span>
+                    <span class="btn-label">Record</span>
+                  </button>
+                  <button class="btn-transport stop-btn" id="btnStop" disabled>
+                    <span class="btn-icon">⏹</span>
+                    <span class="btn-label">Stop</span>
+                  </button>
+                  <button class="btn-transport play-btn" id="btnPlay" disabled>
+                    <span class="btn-icon">▶</span>
+                    <span class="btn-label">Play</span>
+                  </button>
+                </div>
+
+                <button class="btn-share hidden" id="btnShare">
+                  🔗 Bagikan Rekaman Ini
+                </button>
+              </div>
+            </div>
+
+            <div class="recorder-bottom">
+              <div class="led-row">
+                <div class="led" id="led1"></div>
+                <div class="led" id="led2"></div>
+                <div class="led led-power" id="led3"></div>
+                <span class="led-label">REC / PLAY / PWR</span>
+              </div>
+              <div class="bottom-info">MemoriPita Studio v2.0</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== VIEW: SHARE PLAYER ===== -->
+      <div id="view-share" class="view">
+        <div class="share-container">
+          <div class="share-header">
+            <div class="share-from">✦ Pesan Suara Untukmu ✦</div>
+            <h2 class="share-title">Ada Yang Mengirim<br />Rekaman Untukmu</h2>
+            <p class="share-sub">Tekan play untuk mendengarkan...</p>
+          </div>
+
+          <div class="share-player">
+            <div class="share-tape-display">
+              <!-- Gambar tape pengirim tampil di sini -->
+              <img
+                id="shareTapeImg"
+                src=""
+                alt="Shared Tape"
+                class="share-tape-img"
+              />
+              <div class="share-reels">
+                <div class="share-reel" id="shareReel1"></div>
+                <div class="share-reel" id="shareReel2"></div>
+              </div>
+            </div>
+
+            <div class="share-controls">
+              <div class="progress-bar-wrap">
+                <div class="progress-bar-fill" id="progressFill"></div>
+              </div>
+              <button class="btn-share-play" id="btnSharePlay">▶</button>
+              <div class="share-status-text" id="shareStatusText">
+                Siap Diputar
+              </div>
+            </div>
+          </div>
+
+          <button class="btn-back-link" id="btnMakeOwn">
+            📼 Buat Milikmu Sendiri
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-text">© 2026 Resonansi Memori</div>
+      <div class="footer-text">Made by Niken Rachmawati</div>
+    </footer>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

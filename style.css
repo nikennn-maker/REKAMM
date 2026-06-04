@@ -1,0 +1,1122 @@
+/* ============================================
+   MEMORIPITA — Retro Voice Recorder
+   style.css
+   ============================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Special+Elite&family=VT323&family=Cutive+Mono&display=swap");
+
+/* --- VARIABEL WARNA --- */
+:root {
+  --maroon: #7a0000;
+  --maroon-dark: #4a0000;
+  --maroon-light: #a80000;
+  --cream: #f5f0e8;
+  --cream-dark: #e8e0cc;
+  --black: #0f0f0f;
+  --charcoal: #1c1c1c;
+  --gray: #888;
+  --gold: #c8a84b;
+  --green-led: #228b22;
+}
+
+/* --- RESET --- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* --- BODY & SCANLINE EFFECT --- */
+body {
+  font-family: "Cutive Mono", monospace;
+  background: var(--black);
+  color: var(--cream);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Efek garis CRT retro */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.06) 2px,
+    rgba(0, 0, 0, 0.06) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* --- UTILITY --- */
+.hidden {
+  display: none !important;
+}
+
+/* --- NAVBAR --- */
+.navbar {
+  background: var(--maroon-dark);
+  border-bottom: 3px solid var(--gold);
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-logo {
+  font-family: "Special Elite", serif;
+  font-size: 1.4rem;
+  color: var(--gold);
+  letter-spacing: 2px;
+}
+
+.nav-logo span {
+  color: var(--cream);
+}
+
+.nav-badge {
+  font-family: "VT323", monospace;
+  font-size: 1rem;
+  color: rgba(200, 168, 75, 0.5);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+/* --- MAIN & VIEWS --- */
+.main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.view {
+  display: none;
+  width: 100%;
+  max-width: 680px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.view.active {
+  display: flex;
+  animation: fadeUp 0.5s ease;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- TOMBOL KEMBALI --- */
+.back-nav {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  font-family: "VT323", monospace;
+  font-size: 0.95rem;
+  color: rgba(200, 168, 75, 0.5);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: color 0.2s;
+}
+
+.back-nav:hover {
+  color: var(--gold);
+}
+
+/* ============================================
+   VIEW: WELCOME
+   ============================================ */
+.welcome-container {
+  text-align: center;
+  width: 100%;
+}
+
+.welcome-eyebrow {
+  font-family: "VT323", monospace;
+  font-size: 1rem;
+  letter-spacing: 6px;
+  color: var(--gold);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.welcome-title {
+  font-family: "Special Elite", serif;
+  font-size: 3.2rem;
+  color: var(--cream);
+  line-height: 1.15;
+  margin-bottom: 8px;
+}
+
+.welcome-title em {
+  color: var(--maroon-light);
+  font-style: normal;
+}
+
+.welcome-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 24px auto;
+  max-width: 340px;
+}
+
+.welcome-divider::before,
+.welcome-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.4;
+}
+
+.welcome-divider-icon {
+  color: var(--gold);
+  font-size: 1.2rem;
+}
+
+/* VU bar dekorasi welcome */
+.vu-deco {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 3px;
+  height: 65px;
+  margin-bottom: 28px;
+}
+
+.vu-bar {
+  width: 5px;
+  border-radius: 2px;
+  background: var(--maroon);
+  animation: vudance 0.8s ease-in-out infinite alternate;
+  transform-origin: bottom;
+}
+
+.vu-bar:nth-child(1) {
+  height: 20px;
+  animation-delay: 0s;
+}
+.vu-bar:nth-child(2) {
+  height: 35px;
+  animation-delay: 0.1s;
+}
+.vu-bar:nth-child(3) {
+  height: 50px;
+  animation-delay: 0.2s;
+}
+.vu-bar:nth-child(4) {
+  height: 65px;
+  animation-delay: 0.05s;
+}
+.vu-bar:nth-child(5) {
+  height: 50px;
+  animation-delay: 0.15s;
+}
+.vu-bar:nth-child(6) {
+  height: 40px;
+  animation-delay: 0.25s;
+}
+.vu-bar:nth-child(7) {
+  height: 55px;
+  animation-delay: 0.08s;
+}
+.vu-bar:nth-child(8) {
+  height: 30px;
+  animation-delay: 0.18s;
+}
+.vu-bar:nth-child(9) {
+  height: 20px;
+  animation-delay: 0.28s;
+}
+
+@keyframes vudance {
+  from {
+    background: var(--maroon);
+    transform: scaleY(0.3);
+  }
+  to {
+    background: var(--gold);
+    transform: scaleY(1);
+  }
+}
+
+.welcome-desc {
+  font-size: 0.88rem;
+  color: rgba(245, 240, 232, 0.55);
+  max-width: 400px;
+  margin: 0 auto 36px;
+  line-height: 1.8;
+}
+
+/* --- TOMBOL PRIMARY --- */
+.btn-primary {
+  background: var(--maroon);
+  color: var(--cream);
+  border: 1px solid var(--maroon-light);
+  padding: 14px 40px;
+  font-family: "Special Elite", serif;
+  font-size: 1rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.07),
+    transparent
+  );
+  transition: left 0.4s;
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+.btn-primary:hover {
+  background: var(--maroon-light);
+  border-color: var(--gold);
+}
+
+/* ============================================
+   VIEW: SELECT TAPE
+   ============================================ */
+.section-header {
+  text-align: center;
+  margin-bottom: 28px;
+  width: 100%;
+}
+
+.section-eyebrow {
+  font-family: "VT323", monospace;
+  font-size: 1rem;
+  letter-spacing: 5px;
+  color: var(--gold);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.section-title {
+  font-family: "Special Elite", serif;
+  font-size: 1.8rem;
+  color: var(--cream);
+  margin-bottom: 6px;
+}
+
+.section-subtitle {
+  font-size: 0.82rem;
+  color: rgba(245, 240, 232, 0.45);
+}
+
+/* Grid Tape */
+.tape-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  width: 100%;
+}
+
+.tape-card {
+  background: var(--charcoal);
+  border: 1px solid rgba(200, 168, 75, 0.2);
+  border-radius: 8px;
+  padding: 18px 14px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.22s;
+  position: relative;
+  overflow: hidden;
+}
+
+.tape-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transition: transform 0.22s;
+}
+
+.tape-card:hover {
+  border-color: rgba(200, 168, 75, 0.6);
+  background: #2a2020;
+  transform: translateY(-3px);
+}
+
+.tape-card:hover::before {
+  transform: scaleX(1);
+}
+
+.tape-card.selected {
+  border-color: var(--maroon-light);
+  background: #2a1010;
+}
+
+.tape-card.selected::before {
+  transform: scaleX(1);
+  background: var(--maroon-light);
+}
+
+/* Gambar Tape */
+.tape-img-wrap {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.tape-img-wrap img {
+  max-width: 100%;
+  max-height: 80px;
+  object-fit: contain;
+  transition: transform 0.25s;
+  display: block;
+}
+
+.tape-card:hover .tape-img-wrap img {
+  transform: scale(1.1) rotate(-3deg);
+}
+
+/* Fallback emoji kalau gambar gagal load */
+.tape-fallback-icon {
+  font-size: 2.5rem;
+  display: none;
+  transition: transform 0.25s;
+}
+
+.tape-card:hover .tape-fallback-icon {
+  transform: scale(1.2) rotate(-5deg);
+}
+
+.tape-name {
+  font-family: "Special Elite", serif;
+  font-size: 0.85rem;
+  color: var(--cream);
+  margin-bottom: 4px;
+}
+
+.tape-sub {
+  font-family: "VT323", monospace;
+  font-size: 0.78rem;
+  color: var(--gold);
+  letter-spacing: 2px;
+}
+
+/* Confirm bar */
+.confirm-bar {
+  width: 100%;
+  margin-top: 22px;
+  text-align: center;
+}
+
+/* ============================================
+   VIEW: STUDIO
+   ============================================ */
+.studio-wrapper {
+  width: 100%;
+}
+
+.recorder-body {
+  background: var(--charcoal);
+  border: 2px solid rgba(200, 168, 75, 0.35);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Top bar */
+.recorder-top-bar {
+  background: var(--maroon-dark);
+  padding: 10px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(200, 168, 75, 0.25);
+}
+
+.recorder-brand {
+  font-family: "Special Elite", serif;
+  font-size: 0.75rem;
+  color: var(--gold);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.recorder-model {
+  font-family: "VT323", monospace;
+  font-size: 0.9rem;
+  color: rgba(245, 240, 232, 0.35);
+  letter-spacing: 2px;
+}
+
+/* Recorder main area */
+.recorder-main {
+  padding: 26px;
+  display: flex;
+  gap: 26px;
+}
+
+/* --- Kiri: Tape Window --- */
+.tape-window-area {
+  flex: 0 0 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.tape-window {
+  width: 100%;
+  background: #0a0a0a;
+  border: 2px solid rgba(200, 168, 75, 0.4);
+  border-radius: 8px;
+  padding: 14px;
+  position: relative;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.tape-window::before {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border: 1px solid rgba(200, 168, 75, 0.12);
+  border-radius: 5px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Gambar tape yang dipilih */
+.tape-selected-img {
+  width: 100%;
+  max-height: 100px;
+  object-fit: contain;
+  position: relative;
+  z-index: 0;
+  transition: opacity 0.3s;
+}
+
+/* Overlay reel di atas gambar tape */
+.reels-overlay {
+  position: absolute;
+  bottom: 14px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.reel {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid rgba(200, 168, 75, 0.6);
+  position: relative;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.reel::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(200, 168, 75, 0.4);
+}
+
+.reel::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(200, 168, 75, 0.7);
+}
+
+.reel.spinning {
+  animation: spinReel 1s linear infinite;
+}
+.reel.spinning-slow {
+  animation: spinReel 3s linear infinite;
+}
+
+@keyframes spinReel {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.tape-name-display {
+  font-family: "VT323", monospace;
+  font-size: 0.9rem;
+  color: var(--gold);
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+/* VU Meter kecil di bawah tape */
+.vu-meter {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 36px;
+  padding: 4px 6px;
+  background: #060606;
+  border-radius: 4px;
+  border: 1px solid rgba(200, 168, 75, 0.18);
+  width: 100%;
+}
+
+.vu-segment {
+  flex: 1;
+  border-radius: 1px;
+  background: #1a1a1a;
+  height: 100%;
+  position: relative;
+}
+
+.vu-fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 1px;
+  background: var(--maroon);
+  height: 5%;
+  transition: height 0.06s;
+}
+
+/* --- Kanan: Controls Panel --- */
+.controls-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.controls-section-title {
+  font-family: "VT323", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 4px;
+  color: rgba(200, 168, 75, 0.5);
+  text-transform: uppercase;
+  margin-bottom: -8px;
+}
+
+/* Status display */
+.status-display {
+  background: #060606;
+  border: 1px solid rgba(200, 168, 75, 0.22);
+  border-radius: 6px;
+  padding: 12px 14px;
+}
+
+.status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.status-label {
+  font-family: "VT323", monospace;
+  font-size: 0.78rem;
+  color: rgba(200, 168, 75, 0.45);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.status-value {
+  font-family: "VT323", monospace;
+  font-size: 1rem;
+  color: var(--cream);
+  letter-spacing: 1px;
+}
+
+.status-value.mode-rec {
+  color: var(--maroon-light);
+}
+.status-value.mode-play {
+  color: #4a9a4a;
+}
+
+.timer-display {
+  font-family: "VT323", monospace;
+  font-size: 2rem;
+  color: var(--gold);
+  letter-spacing: 3px;
+  text-align: center;
+  padding: 5px 0;
+  border-top: 1px solid rgba(200, 168, 75, 0.12);
+  margin-top: 5px;
+}
+
+.status-msg {
+  font-family: "Cutive Mono", monospace;
+  font-size: 0.67rem;
+  color: rgba(245, 240, 232, 0.38);
+  text-align: center;
+  padding-top: 5px;
+  font-style: italic;
+}
+
+/* Transport buttons */
+.transport-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+
+.btn-transport {
+  padding: 12px 6px;
+  border: 1px solid rgba(200, 168, 75, 0.28);
+  border-radius: 6px;
+  background: #1a1212;
+  color: var(--cream);
+  font-family: "VT323", monospace;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.15s;
+}
+
+.btn-transport:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.btn-transport:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.btn-icon {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+.btn-label {
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  opacity: 0.65;
+  text-transform: uppercase;
+}
+
+.record-btn {
+  background: #1a0808;
+  border-color: rgba(200, 50, 50, 0.4);
+}
+.record-btn:hover:not(:disabled) {
+  background: #2a1010;
+  border-color: var(--maroon-light);
+}
+.record-btn.active {
+  background: #350e0e;
+  border-color: var(--maroon-light);
+  box-shadow: 0 0 10px rgba(168, 0, 0, 0.25);
+}
+
+.play-btn:hover:not(:disabled) {
+  background: #0e1a0e;
+  border-color: #4a9a4a;
+}
+.play-btn.active {
+  background: #0a1a0a;
+  border-color: #4a9a4a;
+}
+
+.stop-btn:hover:not(:disabled) {
+  background: #1a1808;
+  border-color: var(--gold);
+}
+
+/* Share button */
+.btn-share {
+  width: 100%;
+  padding: 11px;
+  background: var(--maroon-dark);
+  border: 1px solid rgba(200, 168, 75, 0.45);
+  border-radius: 6px;
+  color: var(--gold);
+  font-family: "Special Elite", serif;
+  font-size: 0.88rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s;
+  text-transform: uppercase;
+}
+
+.btn-share:hover {
+  background: var(--maroon);
+  border-color: var(--gold);
+}
+
+/* Recorder bottom bar */
+.recorder-bottom {
+  background: #111;
+  border-top: 1px solid rgba(200, 168, 75, 0.12);
+  padding: 10px 26px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.led-row {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+}
+
+.led {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2a1010;
+  border: 1px solid rgba(200, 50, 50, 0.3);
+  transition: all 0.3s;
+}
+
+.led-power {
+  background: var(--green-led);
+  border-color: #4caf50;
+  box-shadow: 0 0 6px rgba(34, 139, 34, 0.5);
+}
+
+.led.on-record {
+  background: #cc0000;
+  border-color: #ff4444;
+  box-shadow: 0 0 8px rgba(200, 0, 0, 0.6);
+  animation: ledBlink 0.8s ease-in-out infinite;
+}
+
+.led.on-play {
+  background: var(--green-led);
+  border-color: #4caf50;
+  box-shadow: 0 0 8px rgba(34, 139, 34, 0.5);
+}
+
+@keyframes ledBlink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
+.led-label {
+  font-family: "VT323", monospace;
+  font-size: 0.72rem;
+  color: rgba(200, 168, 75, 0.35);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.bottom-info {
+  font-family: "VT323", monospace;
+  font-size: 0.78rem;
+  color: rgba(200, 168, 75, 0.28);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ============================================
+   VIEW: SHARE PLAYER
+   ============================================ */
+.share-container {
+  width: 100%;
+  text-align: center;
+}
+
+.share-header {
+  margin-bottom: 22px;
+}
+
+.share-from {
+  font-family: "VT323", monospace;
+  font-size: 1rem;
+  letter-spacing: 4px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.share-title {
+  font-family: "Special Elite", serif;
+  font-size: 1.9rem;
+  color: var(--cream);
+  margin-bottom: 6px;
+  line-height: 1.25;
+}
+
+.share-sub {
+  font-size: 0.8rem;
+  color: rgba(245, 240, 232, 0.4);
+}
+
+.share-player {
+  background: var(--charcoal);
+  border: 2px solid rgba(200, 168, 75, 0.28);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.share-tape-display {
+  background: #0a0a0a;
+  padding: 28px;
+  border-bottom: 1px solid rgba(200, 168, 75, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  position: relative;
+  min-height: 140px;
+}
+
+.share-tape-img {
+  max-width: 200px;
+  max-height: 110px;
+  object-fit: contain;
+}
+
+.share-reels {
+  display: flex;
+  gap: 36px;
+}
+
+.share-reel {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 2px solid rgba(200, 168, 75, 0.5);
+  position: relative;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.share-reel::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(200, 168, 75, 0.6);
+}
+
+.share-reel.spin {
+  animation: spinReel 1.5s linear infinite;
+}
+
+.share-controls {
+  padding: 20px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.progress-bar-wrap {
+  width: 80%;
+  height: 4px;
+  background: rgba(200, 168, 75, 0.14);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: var(--gold);
+  border-radius: 2px;
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+.btn-share-play {
+  background: var(--maroon-dark);
+  border: 1px solid rgba(200, 168, 75, 0.5);
+  border-radius: 50%;
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--gold);
+  font-size: 1.3rem;
+  transition: all 0.2s;
+}
+
+.btn-share-play:hover {
+  background: var(--maroon);
+  border-color: var(--gold);
+  transform: scale(1.08);
+}
+
+.share-status-text {
+  font-family: "VT323", monospace;
+  font-size: 1rem;
+  color: rgba(200, 168, 75, 0.65);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.btn-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: 1px solid rgba(200, 168, 75, 0.28);
+  border-radius: 6px;
+  padding: 10px 22px;
+  color: rgba(245, 240, 232, 0.55);
+  font-family: "Cutive Mono", monospace;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+
+.btn-back-link:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+  background: #0a0a0a;
+  border-top: 1px solid rgba(200, 168, 75, 0.12);
+  padding: 14px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-text {
+  font-family: "VT323", monospace;
+  font-size: 0.9rem;
+  color: #c8a84b;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ============================================
+   TOAST NOTIFICATION
+   ============================================ */
+.toast {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(16px);
+  background: var(--maroon-dark);
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-family: "VT323", monospace;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  padding: 11px 24px;
+  border-radius: 6px;
+  opacity: 0;
+  transition: all 0.3s;
+  z-index: 10000;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ============================================
+   RESPONSIF — Mobile
+   ============================================ */
+@media (max-width: 520px) {
+  .welcome-title {
+    font-size: 2.2rem;
+  }
+
+  .tape-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .recorder-main {
+    flex-direction: column;
+    padding: 18px;
+    gap: 18px;
+  }
+
+  .tape-window-area {
+    flex: unset;
+    width: 100%;
+  }
+
+  .reels-overlay {
+    bottom: 10px;
+  }
+}
